@@ -70,15 +70,15 @@ Mount a template to a DOM element, inject reactive data, and bind custom click h
           this.state(); // Re-render state updates
         }
       },
-      // Templates use `*` as content delimiters inside backticks
+      // Templates use ``* as content delimiters inside backticks
       html: function() {
-        /*`
+        `*
           <div class="card">
             <h1>{{ title }}</h1>
             <p>Current count: <strong>{{ count }}</strong></p>
             <button gammmjs-click="{increment}">Increment</button>
           </div>
-        `*/
+        *`
       }
     });
 
@@ -172,7 +172,7 @@ GammmJS automatically preserves caret position on `<input>` and `<textarea>` ele
       },
 
       html: function() {
-        /*`
+        `*
           <div class="form-card">
             <h2>User Profile Editor</h2>
 
@@ -202,7 +202,7 @@ GammmJS automatically preserves caret position on `<input>` and `<textarea>` ele
               <p id="caret-stats">Caret Position: {{ selectionStart }} to {{ selectionEnd }}</p>
             </div>
           </div>
-        `*/
+        *`
       }
     });
 
@@ -224,7 +224,7 @@ const UserList = new GammmJS({
     users: ["Alice", "Bob", "Charlie"]
   },
   html: function() {
-    /*`
+    `*
       <div>
         <h3>User Directory</h3>
         <ul>
@@ -235,7 +235,7 @@ const UserList = new GammmJS({
           #>
         </ul>
       </div>
-    `*/
+    *`
   }
 });
 
@@ -255,25 +255,25 @@ window.HeaderBlock = new GammmJS({
     title: "Dashboard"
   },
   html: function() {
-    /*`
+    `*
       <header>
         <h2>{{ title }}</h2>
       </header>
-    `*/
+    *`
   }
 });
 
 // 2. Define Parent Component embedding the child block
 const MainApp = new GammmJS({
   html: function() {
-    /*`
+    `*
       <div class="main-layout">
         <#HeaderBlock title="Custom Title" />
         <main>
           <p>Main content area.</p>
         </main>
       </div>
-    `*/
+    *`
   }
 });
 
@@ -289,7 +289,7 @@ Constructor that accepts a configuration object with the following properties:
 
 - **`data`** *(Object)*: Key-value map of properties accessible via `{{ property }}` placeholders.
 - **`events`** *(Object)*: Methods bound through `gammmjs-[event]="{methodName}"`.
-- **`html`** *(Function)*: Template wrapper returning string contents inside `/*` ... `*/` comment blocks.
+- **`html`** *(Function)*: Template wrapper returning string contents inside ``*` ... `*`` comment blocks.
 - **`element`** *(HTMLElement, optional)*: Target DOM node. Automatically renders the component upon instantiation if passed.
 - **`className`** *(String, optional)*: Custom CSS class applied to the wrapper element (`<span>`).
 - **`beforeRender`** *(Function, optional)*: Callback triggered prior to component compilation.
