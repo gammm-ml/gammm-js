@@ -13,6 +13,11 @@ output: github_document
 A simple JavaScript library that enables you to execute custom JavaScript code, bind data, attach event listeners, and render modular components directly inside HTML code.
 
 ---
+# CDN
+Not Minify: [https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs.js](https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs.js)
+Minify: [https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs-min.js](https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs-min.js)
+
+---
 
 ## Features
 
