@@ -14,7 +14,7 @@ A simple JavaScript library that enables you to execute custom JavaScript code, 
 
 ---
 # CDN
-Not Minify: [https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs.js](https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs.js)
+Not Minify: [https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs.js](https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs.js)  
 Minify: [https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs-min.js](https://cdn.githubraw.com/gammm-ml/gammm-js/main/gammmjs-min.js)
 
 ---
