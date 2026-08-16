@@ -55,7 +55,7 @@ Mount a template to a DOM element, inject reactive data, and bind custom click h
   <div id="app"></div>
 
   <!-- Include GammmJS Library -->
-  <script src="GammmJS.js"></script>
+  <script src="gammmjs.js"></script>
 
   <script>
     // 1. Initialize GammmJS instance
@@ -134,7 +134,7 @@ GammmJS automatically preserves caret position on `<input>` and `<textarea>` ele
 
   <div id="form-app"></div>
 
-  <script src="GammmJS.js"></script>
+  <script src="gammmjs.js"></script>
   <script>
     const FormApp = new GammmJS({
       data: {
