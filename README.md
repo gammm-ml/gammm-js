@@ -20,8 +20,25 @@ A simple JavaScript library that enables you to execute custom JavaScript code, 
 - **Data Binding**: Easily interpolate state values using Mustache-style syntax (`{{ property }}`).
 - **Event Delegation**: Bind HTML events using the `gammmjs-[event]="{functionName}"` syntax.
 - **Custom Components & Blocks**: Embed sub-components and pass props using `<#blockName key="value" />` syntax.
-- **Caret & Focus Management**: Automatically preserves cursor position during input and textarea updates.
 - **Lifecycle Hooks**: Trigger logic using `beforeRender` and `afterRender` callbacks.
+
+---
+
+## Template Syntax
+
+When using the `html` property, templates are declared inside a function using template literal backticks enclosed with `*` delimiters:
+
+```javascript
+html: function() {
+  `*
+    <div>
+      <h1>{{ title }}</h1>
+    </div>
+  *`
+}
+```
+
+The library automatically parses and compiles the string located between `` `* `` and `` *` ``.
 
 ---
 
@@ -70,7 +87,6 @@ Mount a template to a DOM element, inject reactive data, and bind custom click h
           this.state(); // Re-render state updates
         }
       },
-      // Templates use ``* as content delimiters inside backticks
       html: function() {
         `*
           <div class="card">
@@ -91,20 +107,20 @@ Mount a template to a DOM element, inject reactive data, and bind custom click h
 
 ---
 
-### 2. Form Input State & Caret Selection Tracking
+### 2. Handling Form Input State
 
-GammmJS automatically preserves caret position on `<input>` and `<textarea>` elements when re-rendering state.
+Capture user input events (`keyup`, `change`, etc.) to update state values dynamically.
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GammmJS Form & Selection Example</title>
+  <title>GammmJS Form Example</title>
   <style>
     .form-card {
       font-family: Arial, sans-serif;
-      max-width: 500px;
+      max-width: 400px;
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 8px;
@@ -122,52 +138,30 @@ GammmJS automatically preserves caret position on `<input>` and `<textarea>` ele
       padding: 8px;
       box-sizing: border-box;
     }
-    .selection-info {
-      background: #f4f4f4;
-      padding: 10px;
-      border-radius: 4px;
-      font-size: 0.9em;
-    }
   </style>
 </head>
 <body>
 
   <div id="form-app"></div>
 
+  <!-- Include GammmJS Library -->
   <script src="gammmjs.js"></script>
   <script>
     const FormApp = new GammmJS({
       data: {
         username: "Angelo",
-        bio: "Building cool JavaScript libraries!",
-        selectionStart: 0,
-        selectionEnd: 0
+        bio: "Building cool JavaScript libraries!"
       },
 
       events: {
-        // Handles state updates for text inputs
         updateUsername: function(element, event) {
           this.data.username = element.value;
-          this.state(); // Re-render state while maintaining focus and caret
-        },
-
-        // Updates textarea state and tracks selection positions
-        updateBio: function(element, event) {
-          this.data.bio = element.value;
-          this.data.selectionStart = element.selectionStart;
-          this.data.selectionEnd = element.selectionEnd;
           this.state();
         },
 
-        // Tracks cursor positioning on selection/clicks
-        trackSelection: function(element, event) {
-          this.data.selectionStart = element.selectionStart;
-          this.data.selectionEnd = element.selectionEnd;
-          
-          const statsEl = document.querySelector("#caret-stats");
-          if (statsEl) {
-            statsEl.innerText = `Caret Position: ${this.data.selectionStart} to ${this.data.selectionEnd}`;
-          }
+        updateBio: function(element, event) {
+          this.data.bio = element.value;
+          this.state();
         }
       },
 
@@ -191,15 +185,12 @@ GammmJS automatically preserves caret position on `<input>` and `<textarea>` ele
               <textarea 
                 id="bio" 
                 rows="4" 
-                gammmjs-keyup="{updateBio}" 
-                gammmjs-click="{trackSelection}" 
-                gammmjs-select="{trackSelection}"
+                gammmjs-keyup="{updateBio}"
               >{{ bio }}</textarea>
             </div>
 
-            <div class="selection-info">
+            <div class="preview">
               <p><strong>Preview:</strong> {{ username }} - <em>"{{ bio }}"</em></p>
-              <p id="caret-stats">Caret Position: {{ selectionStart }} to {{ selectionEnd }}</p>
             </div>
           </div>
         *`
@@ -216,7 +207,7 @@ GammmJS automatically preserves caret position on `<input>` and `<textarea>` ele
 
 ### 3. Inline Script Blocks (`<#gammmjs ... #>`)
 
-Execute inline logic such as loops or conditional logic inside your HTML structure.
+Execute inline logic such as loops or conditional statements inside your HTML structure.
 
 ```javascript
 const UserList = new GammmJS({
@@ -289,7 +280,7 @@ Constructor that accepts a configuration object with the following properties:
 
 - **`data`** *(Object)*: Key-value map of properties accessible via `{{ property }}` placeholders.
 - **`events`** *(Object)*: Methods bound through `gammmjs-[event]="{methodName}"`.
-- **`html`** *(Function)*: Template wrapper returning string contents inside ``*` ... `*`` comment blocks.
+- **`html`** *(Function)*: Template wrapper returning string contents inside `` `* `` ... `` *` `` delimiters.
 - **`element`** *(HTMLElement, optional)*: Target DOM node. Automatically renders the component upon instantiation if passed.
 - **`className`** *(String, optional)*: Custom CSS class applied to the wrapper element (`<span>`).
 - **`beforeRender`** *(Function, optional)*: Callback triggered prior to component compilation.
