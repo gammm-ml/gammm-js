@@ -221,7 +221,9 @@ const UserList = new GammmJS({
         <ul>
           <#gammmjs
             for (var i = 0; i < ThisGammmJS.data.users.length; i++) {
-              GammmEcho("<li>User: " + ThisGammmJS.data.users[i] + "</li>");
+              <li>
+              {{'User: ' + ThisGammmJS.data.users[i] }}
+              </li>
             }
           #>
         </ul>
@@ -273,6 +275,13 @@ GammmJSDom.load(document.getElementById('app'), MainApp);
 
 ---
 
+## Scope & Limitations
+
+* **Inline Scripting Context**: Logic written inside `<#gammmjs ... #>` tags runs in an isolated execution scope. Global references should explicitly target `window` or use `ThisGammmJS`.
+* **String Literals in Interpolation**: Any hardcoded string literal inside data-binding braces must use single quotes (`{{ '[string]' }}`).
+* **HTML Element Formatting**: HTML tags within template literals must always start on a new line to ensure the parser correctly processes block tokens and DOM nodes.
+
+---
 ## API Reference
 
 ### `GammmJS(options)`
