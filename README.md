@@ -19,7 +19,7 @@ A simple JavaScript library that enables you to execute custom JavaScript code, 
 - **Embedded JS Execution**: Execute inline JavaScript logic using `<#gammmjs ... #>` tags.
 - **Data Binding**: Easily interpolate state values using Mustache-style syntax (`{{ property }}`).
 - **Event Delegation**: Bind HTML events using the `gammmjs-[event]="{functionName}"` syntax.
-- **Custom Components & Blocks**: Embed sub-components and pass props using `<#blockName key="value" />` syntax.
+- **Custom Components & Blocks**: Embed sub-components `<#blockName  />` syntax.
 - **Lifecycle Hooks**: Trigger logic using `beforeRender` and `afterRender` callbacks.
 
 ---
@@ -49,7 +49,7 @@ The library automatically parses and compiles the string located between `` `* `
 | **Data Binding** | `{{ username }}` | Binds properties defined in the component's `data` object. |
 | **Inline Code** | `<#gammmjs ... #>` | Executes inline JS logic. Use `GammmEcho("string")` inside to write output to the HTML. |
 | **Event Binding** | `gammmjs-click="{handleClick}"` | Binds DOM events (`click`, `keyup`, etc.) to methods defined in the `events` object. |
-| **Component Blocks**| `<#MyComponent />` | Embeds a sub-component block and automatically assigns props to global variables matching the block name. |
+| **Component Blocks**| `<#MyComponent />` | Embeds a sub-component block. |
 
 ---
 
