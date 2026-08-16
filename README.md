@@ -243,25 +243,33 @@ Inject child component blocks inside parent templates using the `<#BlockName pro
 
 ```javascript
 // 1. Define Child Block globally so window['HeaderBlock'] can be referenced by the parser
-window.HeaderBlock = new GammmJS({
-  data: {
-    title: "Dashboard"
-  },
-  html: function() {
-    `*
-      <header>
-        <h2>{{ title }}</h2>
-      </header>
-    *`
-  }
-});
+window.HeaderBlock = function(title){
+	return new GammmJS({
+	  data: {
+		title: title
+	  },
+	  html: function() {
+		`*
+		
+		  <header>
+			<h2>{{ title }}</h2>
+		  </header>
+		  
+		*`
+	  }
+	});
+}
+
+var ReUseBlock = HeaderBlock("Dashboard Component");
 
 // 2. Define Parent Component embedding the child block
 const MainApp = new GammmJS({
   html: function() {
     `*
       <div class="main-layout">
-        <#HeaderBlock title="Custom Title" />
+	  
+        <#ReUseBlock />
+		
         <main>
           <p>Main content area.</p>
         </main>
