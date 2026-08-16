@@ -1,2 +1,2 @@
-# gammm-js
+# GammmJS
 A Simple JavaScript Library
